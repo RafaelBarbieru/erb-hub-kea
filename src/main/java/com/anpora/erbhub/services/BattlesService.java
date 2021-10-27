@@ -1,12 +1,12 @@
-package com.rafaelbarbieru.erbapi.services;
+package com.anpora.erbhub.services;
 
-import com.rafaelbarbieru.erbapi.dto.BattleDTO;
-import com.rafaelbarbieru.erbapi.dto.CharacterDTO;
-import com.rafaelbarbieru.erbapi.entities.BattleEntity;
-import com.rafaelbarbieru.erbapi.entities.PersonEntity;
-import com.rafaelbarbieru.erbapi.exceptions.ResourceNotFoundException;
-import com.rafaelbarbieru.erbapi.repositories.BattleRepository;
-import com.rafaelbarbieru.erbapi.repositories.PersonRepository;
+import com.anpora.erbhub.dto.BattleDTO;
+import com.anpora.erbhub.dto.CharacterDTO;
+import com.anpora.erbhub.repositories.BattleRepository;
+import com.anpora.erbhub.repositories.PersonRepository;
+import com.anpora.erbhub.entities.BattleEntity;
+import com.anpora.erbhub.entities.PersonEntity;
+import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author Rafael Barbieru
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  * Service class for Battles
  */
 @Service

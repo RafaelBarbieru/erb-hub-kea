@@ -1,12 +1,13 @@
-package com.rafaelbarbieru.erbapi.entities;
+package com.anpora.erbhub.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 /**
- * @author Rafael Barbieru
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  * Entity class for an ERB battle/video/song
  */
 @Entity
@@ -18,12 +19,15 @@ public class BattleEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "name", nullable = false)
     private String name;
+
     @Column(name = "duration", nullable = false)
     private Integer duration;
+
     @Column(name = "publication_date", nullable = false)
-    private String publicationDate;
+    private Date publicationDate;
 
     @JoinTable(
             name = "battles_characters",
@@ -36,8 +40,10 @@ public class BattleEntity {
 
     @Column(name = "lyrics", nullable = false)
     private String lyrics;
+
     @Column(name = "spotify_link")
     private String spotifyLink;
+
     @Column(name = "cover_picture")
     private String coverPictureURL;
 

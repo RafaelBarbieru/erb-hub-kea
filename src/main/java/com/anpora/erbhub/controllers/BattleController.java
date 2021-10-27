@@ -1,7 +1,7 @@
-package com.rafaelbarbieru.erbapi.controllers;
+package com.anpora.erbhub.controllers;
 
-import com.rafaelbarbieru.erbapi.dto.BattleDTO;
-import com.rafaelbarbieru.erbapi.services.BattlesService;
+import com.anpora.erbhub.dto.BattleDTO;
+import com.anpora.erbhub.services.BattlesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
+ * Controller class for /battles and /battle/
+ */
 @RestController
 public class BattleController {
 

@@ -1,4 +1,4 @@
-package com.rafaelbarbieru.erbapi.config;
+package com.anpora.erbhub.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +12,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
 
+/**
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

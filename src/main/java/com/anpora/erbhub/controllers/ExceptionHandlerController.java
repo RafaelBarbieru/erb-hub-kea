@@ -1,8 +1,8 @@
-package com.rafaelbarbieru.erbapi.controllers;
+package com.anpora.erbhub.controllers;
 
-import com.rafaelbarbieru.erbapi.dto.ErrorResponseDTO;
-import com.rafaelbarbieru.erbapi.exceptions.BadRequestException;
-import com.rafaelbarbieru.erbapi.exceptions.ResourceNotFoundException;
+import com.anpora.erbhub.dto.ErrorResponseDTO;
+import com.anpora.erbhub.exceptions.BadRequestException;
+import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @author Rafael Barbieru
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  * Class that handles all exceptions in the application
  */
 @RestControllerAdvice

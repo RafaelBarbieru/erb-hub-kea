@@ -1,4 +1,4 @@
-package com.rafaelbarbieru.erbapi.dto;
+package com.anpora.erbhub.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @author Rafael Barbieru
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  * Bean class for an ERB Battle/Video
  */
 @Data

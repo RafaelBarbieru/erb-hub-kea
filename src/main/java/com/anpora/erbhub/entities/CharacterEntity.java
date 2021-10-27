@@ -1,4 +1,4 @@
-package com.rafaelbarbieru.erbapi.entities;
+package com.anpora.erbhub.entities;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author Rafael Barbieru
+ * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  * Entity class for an ERB character
  */
 @Entity

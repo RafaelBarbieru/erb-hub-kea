@@ -8,13 +8,13 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.rafaelbarbieru</groupId>
-	<artifactId>erb-api</artifactId>
+	<groupId>com.anpora</groupId>
+	<artifactId>erb-hub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>erb-api</name>
-	<description>API for Epic Rap Battles of History</description>
+	<name>ERB hub</name>
+	<description>Hub for Epic Rap Battles of History</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
