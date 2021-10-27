@@ -1,0 +1,17 @@
+Midnight:
+#0F044C
+#141E61
+#787A91
+#EEEEEE
+
+Bonfire:
+#082032
+#2C394B
+#334756
+#FF4C29
+
+Golden experience:
+#4A3933
+#F0A500
+#E45826
+#E6D5B8
