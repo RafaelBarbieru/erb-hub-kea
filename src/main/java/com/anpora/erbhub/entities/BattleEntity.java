@@ -34,6 +34,7 @@ public class BattleEntity {
             joinColumns = @JoinColumn(name = "battle_id"),
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
+
     @ManyToMany(cascade = CascadeType.ALL)
     private List<CharacterEntity> characters;
 
@@ -41,10 +42,13 @@ public class BattleEntity {
     @Column(name = "lyrics", nullable = false)
     private String lyrics;
 
+    @Column(name = "youtube_link", nullable = false)
+    private String youtubeLink;
+
     @Column(name = "spotify_link")
     private String spotifyLink;
 
-    @Column(name = "cover_picture")
-    private String coverPictureURL;
+    @Column(name = "cover_image")
+    private String coverImageURL;
 
 }

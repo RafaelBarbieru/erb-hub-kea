@@ -1,0 +1,34 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: 'true'
+    show-sql: 'true'
+  datasource:
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/erb_hub
+server:
+  error:
+    whitelabel:
+      enabled: 'true'
+  port: '8080'
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method
+    path: /
+  api-docs:
+    path: /api-docs
+
+# Messages
+error:
+  advice:
+    badrequest: Please, read the specifications of the API and try again.
+    notfound: Please, try again with a different value.
+    unexpectederror: If the problem persists, please contact the administrator.
+  message:
+    badrequest: The request was badly formatted.
+    notfound: The requested resource was not found.
+    unexpectederror: There was an unexpected error trying to access the service.

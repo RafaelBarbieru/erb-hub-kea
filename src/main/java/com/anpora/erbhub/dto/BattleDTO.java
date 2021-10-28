@@ -3,6 +3,7 @@ package com.anpora.erbhub.dto;
 import lombok.Builder;
 import lombok.Data;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -15,11 +16,12 @@ public class BattleDTO {
 
     private Long id;
     private String name;
-    private Integer durationInSeconds;
-    private String publicationDate;
-    private List<CharacterDTO> cast;
+    private Integer duration;
+    private Date publicationDate;
     private String lyrics;
+    private String youtubeLink;
     private String spotifyLink;
-    private String coverPictureURL;
+    private String image;
+    private List<CharacterDTO> characters;
 
 }

@@ -15,17 +15,25 @@ import java.util.List;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Controller class for /battles and /battle/
+ * Controller class for battles
  */
 @RestController
 public class BattleController {
 
-    @Autowired
+    // Dependencies
     private Environment env;
-
-    @Autowired
     private BattlesService battlesService;
 
+    // Constructor injection
+    @Autowired
+    public BattleController(
+            Environment env,
+            BattlesService battlesService) {
+        this.env = env;
+        this.battlesService = battlesService;
+    }
+
+    // Endpoints
     @GetMapping("/battles")
     @ResponseBody
     public ResponseEntity<List<BattleDTO>> getAllBattles() throws Exception {

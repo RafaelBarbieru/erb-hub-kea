@@ -5,15 +5,14 @@ import lombok.Data;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Bean class for an ERB person
+ * Bean class for a social media platform
  */
 @Data
 @Builder
-public class PersonDTO {
+public class SocialMediaDTO {
 
     private Long id;
     private String name;
-    private String alias;
-    private String contact;
+    private String link;
 
 }

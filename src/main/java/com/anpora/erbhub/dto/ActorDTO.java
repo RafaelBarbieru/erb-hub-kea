@@ -7,17 +7,17 @@ import java.util.List;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Bean class for an ERB character
+ * Bean class for an actor
  */
 @Data
 @Builder
-public class CharacterDTO {
+public class ActorDTO {
 
     private Long id;
     private String name;
+    private String alias;
     private String description;
-    private String image;
-    private List<ActorDTO> actors;
+    private String imageURL;
+    private List<SocialMediaDTO> socialMedia;
 
 }
-

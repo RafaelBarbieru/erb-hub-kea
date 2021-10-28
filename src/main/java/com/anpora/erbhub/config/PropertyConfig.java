@@ -7,6 +7,6 @@ import org.springframework.context.annotation.PropertySource;
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  */
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yaml")
 public class PropertyConfig {
 }

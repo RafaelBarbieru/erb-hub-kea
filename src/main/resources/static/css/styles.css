@@ -1,0 +1,9 @@
+.erb-form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.erb-form {
+    margin-top: 2rem;
+    min-width: 90%;
+}

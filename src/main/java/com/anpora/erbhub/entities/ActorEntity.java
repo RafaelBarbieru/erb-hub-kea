@@ -7,25 +7,23 @@ import java.util.List;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Entity class for an ERB character
+ * Entity class for an actor
  */
 @Entity
 @Data
-@Table(name = "characters")
-
-/**
- * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Entity class for a character
- */
-public class CharacterEntity {
+@Table(name = "actors")
+public class ActorEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "alias")
+    private String alias;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -34,12 +32,11 @@ public class CharacterEntity {
     private String imageURL;
 
     @JoinTable(
-            name = "actors_characters",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
+            name = "actors_social_media",
+            joinColumns = @JoinColumn(name = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "social_media_id")
     )
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<ActorEntity> actors;
-
+    private List<SocialMediaEntity> socialMedia;
 
 }

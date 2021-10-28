@@ -6,22 +6,26 @@ import javax.persistence.*;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Entity class for an ERB person
+ * Entity class for a social medium
  */
 @Entity
 @Data
-@Table(name = "persons")
-public class PersonEntity {
+@Table(name = "social_media")
+@SecondaryTable(
+        name = "actors_social_media",
+        pkJoinColumns=@PrimaryKeyJoinColumn(name="social_media_id", referencedColumnName="id")
+)
+public class SocialMediaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "alias")
-    private String alias;
-    @Column(name = "contact")
-    private String contact;
+
+    @Column(table="actors_social_media", name="link", nullable = false)
+    private String link;
 
 }

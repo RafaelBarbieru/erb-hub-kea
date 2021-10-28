@@ -1,12 +1,16 @@
 package com.anpora.erbhub.services;
 
+import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
+import com.anpora.erbhub.dto.SocialMediaDTO;
+import com.anpora.erbhub.entities.SocialMediaEntity;
 import com.anpora.erbhub.repositories.BattleRepository;
-import com.anpora.erbhub.repositories.PersonRepository;
+import com.anpora.erbhub.repositories.ActorRepository;
 import com.anpora.erbhub.entities.BattleEntity;
-import com.anpora.erbhub.entities.PersonEntity;
+import com.anpora.erbhub.entities.ActorEntity;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
+import com.anpora.erbhub.repositories.SocialMediaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +28,27 @@ import java.util.Optional;
 @Service
 public class BattlesService {
 
+    // Dependencies
     private static final Logger LOG = LoggerFactory.getLogger(BattlesService.class);
-    @Autowired
     private Environment env;
-
-    @Autowired
     private BattleRepository battleRepository;
-    @Autowired
-    private PersonRepository personRepository;
+    private ActorRepository actorRepository;
+    private SocialMediaRepository socialMediaRepository;
 
+    // Constructor injection
+    @Autowired
+    public BattlesService(
+            final Environment env,
+            BattleRepository battleRepository,
+            ActorRepository actorRepository,
+            SocialMediaRepository socialMediaRepository) {
+        this.env = env;
+        this.battleRepository = battleRepository;
+        this.actorRepository = actorRepository;
+        this.socialMediaRepository = socialMediaRepository;
+    }
+
+    // Methods
     /**
      * Returns a list of BattleBean's of all the battles in the database
      *
@@ -64,7 +80,7 @@ public class BattlesService {
     }
 
     /**
-     * Builds the JSON response
+     * Builds the battle bean
      *
      * @param battleEntity
      * @return
@@ -74,22 +90,54 @@ public class BattlesService {
 
         // Getting the characters involved in the current battle
         battleEntity.getCharacters().forEach(characterEntity -> {
-            PersonEntity personEntity;
+            ActorEntity actorEntity;
 
-            // Filtering out the actors that didn't play the character, in case there are more than one
-            if (characterEntity.getPersons().size() > 1) {
-                personEntity = personRepository.getPersonByCharacterAndBattle(characterEntity.getId(), battleEntity.getId());
+            // Filtering out the actors that didn't play the character, in case there is more than one
+            if (characterEntity.getActors().size() > 1) {
+                actorEntity = actorRepository.findActorByCharacterAndBattle(
+                        characterEntity.getId(),
+                        battleEntity.getId()
+                );
             } else {
-                personEntity = characterEntity.getPersons().get(0);
+                actorEntity = characterEntity.getActors().get(0);
             }
+
+            // Getting the social media of the actor
+            List<SocialMediaEntity> socialMediaEntityList = socialMediaRepository
+                    .findSocialMediaByActorID(actorEntity.getId());
+
+            // Building the social media bean
+            List<SocialMediaDTO> socialMedia = new ArrayList<>();
+            socialMediaEntityList.forEach(socialMediaEntity -> {
+                SocialMediaDTO socialMediaDTO = SocialMediaDTO.builder()
+                        .id(socialMediaEntity.getId())
+                        .name(socialMediaEntity.getName())
+                        .link(socialMediaEntity.getLink())
+                        .build();
+                socialMedia.add(socialMediaDTO);
+            });
+
+
+            // Building the actor bean
+            ActorDTO actorDTO = ActorDTO.builder()
+                    .id(actorEntity.getId())
+                    .name(actorEntity.getName())
+                    .alias(actorEntity.getAlias())
+                    .description(actorEntity.getDescription())
+                    .imageURL(actorEntity.getImageURL())
+                    .socialMedia(socialMedia)
+                    .build();
+
+            List<ActorDTO> actors = new ArrayList<>();
+            actors.add(actorDTO);
 
             // Building the character bean
             CharacterDTO characterDTO = CharacterDTO.builder()
                     .id(characterEntity.getId())
-                    .character(characterEntity.getName())
-                    .name(personEntity.getName())
-                    .alias(personEntity.getAlias())
-                    .contact(personEntity.getContact())
+                    .name(characterEntity.getName())
+                    .description(characterEntity.getDescription())
+                    .image(characterEntity.getImageURL())
+                    .actors(actors)
                     .build();
 
             // Adding the character to the list of characters in the battle
@@ -102,12 +150,13 @@ public class BattlesService {
         BattleDTO battle = BattleDTO.builder()
                 .id(battleEntity.getId())
                 .name(battleEntity.getName())
-                .durationInSeconds(battleEntity.getDuration())
+                .duration(battleEntity.getDuration())
                 .publicationDate(battleEntity.getPublicationDate())
-                .cast(characters)
                 .lyrics(battleEntity.getLyrics())
+                .youtubeLink(battleEntity.getYoutubeLink())
                 .spotifyLink(battleEntity.getSpotifyLink())
-                .coverPictureURL(battleEntity.getCoverPictureURL())
+                .image(battleEntity.getCoverImageURL())
+                .characters(characters)
                 .build();
 
         // Returning the battle
