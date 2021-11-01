@@ -1,21 +1,34 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" th:src="@{${battle.getImage()}}" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title" th:text="
-                                ${battle.getName()} +
-                                ' (' + ${@commonUtils.getFormattedDuration(battle.getDuration())} +
-                                ')'">
-        </h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Watch on YouTube</a>
-        <a href="#" class="btn btn-primary">Listen on Spotify</a>
-        <a href="#" class="btn btn-primary">See lyrics</a>
-    </div>
-</div>
+<div class="card d-flex" style="width: 400px;">
 
-<p th:text="'This is the battle ' + ${battle.getName()} + '!'">
-<p th:text="'Its duration is ' + ${@commonUtils.getFormattedDuration(battle.getDuration())}">
-<div>
-    <b>LYRICS:</b>
-    <p style="white-space: pre;" th:text="${battle.getLyrics()}">
+    <!-- Image -->
+    <a href="#">
+        <img class="card-img-top" th:src="@{${battle.getImage()}}" alt="Card image cap">
+    </a>
+
+    <!-- Body -->
+    <div class="card-body">
+
+        <!-- Title -->
+        <b class="card-title" th:text="${battle.getName()}"></b>
+        <br>
+
+        <!-- Duration -->
+        <small th:text="${@commonUtils.getFormattedDuration(battle.getDuration())}" style="margin-bottom: 2rem"></small>
+
+        <!-- Lyrics -->
+        <p class="card-text erb-lyrics" th:text="${battle.getLyrics()}"></p>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between">
+
+            <!-- YouTube -->
+            <a th:href="${battle.getYoutubeLink()}" target="_blank" class="btn btn-primary"><i class="fab fa-youtube"></i> YouTube</a>
+
+            <!-- Spotify -->
+            <a th:href="${battle.getSpotifyLink()}" target="_blank" class="btn btn-primary"><i class="fab fa-spotify"></i> Spotify</a>
+
+            <!-- Details -->
+            <a href="#" target="_blank" class="btn btn-primary"><i class="fas fa-search"></i> Details</a>
+        </div>
+    </div>
 </div>

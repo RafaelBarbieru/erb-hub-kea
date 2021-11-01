@@ -80,6 +80,20 @@ public class BattlesService {
     }
 
     /**
+     * Gets the latest battle according to the publication date
+     * @return
+     * @throws Exception
+     */
+    public BattleDTO getLastBattle() throws Exception {
+        Optional<BattleEntity> battleEntity = battleRepository.findFirstByOrderByPublicationDateDesc();
+        return buildBattleDTO(
+                battleEntity.orElseThrow(
+                        () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
+                )
+        );
+    }
+
+    /**
      * Builds the battle bean
      *
      * @param battleEntity

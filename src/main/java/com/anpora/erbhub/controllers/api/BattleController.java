@@ -1,4 +1,4 @@
-package com.anpora.erbhub.controllers;
+package com.anpora.erbhub.controllers.api;
 
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.services.BattlesService;
@@ -34,13 +34,13 @@ public class BattleController {
     }
 
     // Endpoints
-    @GetMapping("/battles")
+    @GetMapping("/api/battles")
     @ResponseBody
     public ResponseEntity<List<BattleDTO>> getAllBattles() throws Exception {
         return new ResponseEntity<>(battlesService.getAllBattles(), HttpStatus.OK);
     }
 
-    @GetMapping("/battle/{id}")
+    @GetMapping("/api/battle/{id}")
     public ResponseEntity<BattleDTO> getBattle(@PathVariable Long id) throws Exception {
         return new ResponseEntity<>(battlesService.getBattleById(id), HttpStatus.OK);
     }

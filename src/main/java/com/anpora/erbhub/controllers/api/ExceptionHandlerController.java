@@ -1,4 +1,4 @@
-package com.anpora.erbhub.controllers;
+package com.anpora.erbhub.controllers.api;
 
 import com.anpora.erbhub.dto.ErrorResponseDTO;
 import com.anpora.erbhub.exceptions.BadRequestException;

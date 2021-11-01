@@ -9,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
@@ -34,9 +38,27 @@ public class WebController {
     // Endpoints
     @RequestMapping("/")
     public String index(Model model) throws Exception {
-        BattleDTO battle = battlesService.getBattleById(1L);
+        BattleDTO battle = battlesService.getLastBattle();
         model.addAttribute("battle", battle);
         return "index";
+    }
+
+    @RequestMapping("/battles")
+    public String battles(Model model) throws Exception {
+        List<BattleDTO> battles = battlesService.getAllBattles();
+        model.addAttribute("battles", battles);
+        return "battles";
+    }
+
+    @RequestMapping("/battle/{id}")
+    public String battle(Model model, @RequestParam Long id) throws Exception {
+        BattleDTO battle = battlesService.getBattleById(id);
+        if (battle != null) {
+            model.addAttribute("battle", battle);
+            return "battle";
+        } else {
+            return "battle_not_found";
+        }
     }
 
 }
