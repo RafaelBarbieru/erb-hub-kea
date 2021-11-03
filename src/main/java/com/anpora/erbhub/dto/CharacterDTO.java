@@ -2,6 +2,7 @@ package com.anpora.erbhub.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -19,5 +20,9 @@ public class CharacterDTO {
     private String image;
     private List<ActorDTO> actors;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
 

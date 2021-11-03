@@ -1,19 +1,16 @@
 package com.anpora.erbhub.controllers;
 
 import com.anpora.erbhub.dto.BattleDTO;
+import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import com.anpora.erbhub.services.BattlesService;
 import com.anpora.erbhub.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ScopeMetadata;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
@@ -38,9 +35,7 @@ public class WebController {
     // Endpoints
     @RequestMapping("/")
     public String index(Model model) throws Exception {
-        BattleDTO battle = battlesService.getLastBattle();
-        model.addAttribute("battle", battle);
-        return "index";
+        return battles(model);
     }
 
     @RequestMapping("/battles")
@@ -51,12 +46,12 @@ public class WebController {
     }
 
     @RequestMapping("/battle/{id}")
-    public String battle(Model model, @RequestParam Long id) throws Exception {
-        BattleDTO battle = battlesService.getBattleById(id);
-        if (battle != null) {
+    public String battle(Model model, @PathVariable Long id) throws Exception {
+        try {
+            BattleDTO battle = battlesService.getBattleById(id);
             model.addAttribute("battle", battle);
             return "battle";
-        } else {
+        } catch (ResourceNotFoundException ex) {
             return "battle_not_found";
         }
     }

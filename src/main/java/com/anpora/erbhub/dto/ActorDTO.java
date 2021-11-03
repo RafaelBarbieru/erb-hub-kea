@@ -20,4 +20,8 @@ public class ActorDTO {
     private String imageURL;
     private List<SocialMediaDTO> socialMedia;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

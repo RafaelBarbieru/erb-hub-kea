@@ -12,15 +12,50 @@
     <title>ERB Hub</title>
 </head>
 <body>
+
 <!-- Navbar -->
 <div th:replace="fragments/_navbar.html"></div>
 
-<!-- Last battle -->
-<div class="erb-last-battle">
-    <div>
-        <h3>Latest battle</h3>
-        <div th:include="fragments/_battle.html"></div>
+<div class="m-4" style="display: flex; justify-content: center; align-content: center">
+    <!-- Battle -->
+    <div class="card" style="width: 50%">
+        <img th:src="${battle.getImage()}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${battle.getName()}"></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <!-- Characters -->
+            <li class="list-group-item">
+                Characters:
+                <a
+                        th:href="'/character/' + ${character.getId()}"
+                        th:each="character : ${battle.getCharacters()}"
+                        th:text="${character.getName()} + ' | '"></a>
+            </li>
+            <!-- Actors -->
+            <li class="list-group-item">
+                Actors:
+                <a
+                        th:href="'/actor/' + ${actor.getId()}"
+                        th:each="actor : ${@commonUtils.getActorsFromCharacters(battle.getCharacters())}"
+                        th:text="${actor.getAlias()} + ' | '"></a>
+            </li>
+        </ul>
+        <div class="card-body">
+            <!-- YouTube -->
+            <a th:href="${battle.getYoutubeLink()}" target="_blank" class="btn btn-primary me-2"><i class="fab fa-youtube"></i> YouTube</a>
+
+            <!-- Spotify -->
+            <a th:href="${battle.getSpotifyLink()}" target="_blank" class="btn btn-primary"><i class="fab fa-spotify"></i> Spotify</a>
+        </div>
+        <div>
+            <!-- Lyrics -->
+            <h4 class="mx-3">Lyrics:</h4>
+            <p class="card-text mx-3 mb-2" style="white-space: pre-line" th:text="${battle.getLyrics()}"></p>
+        </div>
     </div>
 </div>
+
+
 </body>
 </html>

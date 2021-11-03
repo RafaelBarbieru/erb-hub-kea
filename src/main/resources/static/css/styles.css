@@ -41,3 +41,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.erb-card-img {
+    opacity:0.1;
+    background-color: Black;
+    z-index:2;
+}
+.card-img-overlay {
+    z-index: 3;
+}
+.erb-card-img img {
+    z-index: 1;
+}
