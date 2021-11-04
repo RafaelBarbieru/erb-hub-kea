@@ -49,6 +49,7 @@ public class BattleService {
     }
 
     // Methods
+
     /**
      * Returns a list of BattleBean's of all the battles in the database
      *
@@ -81,6 +82,7 @@ public class BattleService {
 
     /**
      * Gets the latest battle according to the publication date
+     *
      * @return
      * @throws Exception
      */
@@ -100,81 +102,72 @@ public class BattleService {
      * @return
      */
     private BattleDTO buildBattleDTO(BattleRelDAO battleEntity) {
-        List<CharacterDTO> characters = new ArrayList<>();
+        try {
+            List<CharacterDTO> characters = new ArrayList<>();
 
-        // Getting the characters involved in the current battle
-        battleEntity.getCharacters().forEach(characterEntity -> {
-            ActorRelDAO actorEntity;
+            // Getting the characters involved in the current battle
+            battleEntity.getCharacters().forEach(characterEntity -> {
+                List<ActorRelDAO> actorsEntity = new ArrayList<>();
 
-            // Filtering out the actors that didn't play the character, in case there is more than one
-            if (characterEntity.getActors().size() > 1) {
-                actorEntity = actorRepository.findActorByCharacterAndBattle(
-                        characterEntity.getId(),
-                        battleEntity.getId()
-                );
-            } else {
-                actorEntity = characterEntity.getActors().get(0);
-            }
+                // Filtering out the actors that didn't play the character, in case there is more than one
+                if (characterEntity.getActors().size() > 1) {
 
-            // Getting the social media of the actor
-            List<SocialMediaRelDAO> socialMediaEntityList = socialMediaRepository
-                    .findSocialMediaByActorID(actorEntity.getId());
+                    actorsEntity = actorRepository.findActorsByCharacterAndBattle(
+                            characterEntity.getId(),
+                            battleEntity.getId()
+                    );
+                } else {
+                    actorsEntity.add(characterEntity.getActors().get(0));
+                }
 
-            // Building the social media bean
-            List<SocialMediaDTO> socialMedia = new ArrayList<>();
-            socialMediaEntityList.forEach(socialMediaEntity -> {
-                SocialMediaDTO socialMediaDTO = SocialMediaDTO.builder()
-                        .id(socialMediaEntity.getId())
-                        .name(socialMediaEntity.getName())
-                        .link(socialMediaEntity.getLink())
+                // Building the actor bean
+                ActorRelDAO actorEntity = actorsEntity.get(0);//TODO: Make this work for more than one actor as well
+                ActorDTO actorDTO = ActorDTO.builder()
+                        .id(actorEntity.getId())
+                        .name(actorEntity.getName())
+                        .alias(actorEntity.getAlias())
+                        .description(actorEntity.getDescription())
+                        .imageURL(actorEntity.getImageURL())
+                        .socialMedia(null) // We don't need the social media for this
                         .build();
-                socialMedia.add(socialMediaDTO);
+
+                List<ActorDTO> actors = new ArrayList<>();
+                actors.add(actorDTO);
+
+                // Building the character bean
+                CharacterDTO characterDTO = CharacterDTO.builder()
+                        .id(characterEntity.getId())
+                        .name(characterEntity.getName())
+                        .description(characterEntity.getDescription())
+                        .image(characterEntity.getImageURL())
+                        .actors(actors)
+                        .build();
+
+                // Adding the character to the list of characters in the battle
+                characters.add(characterDTO);
+
             });
 
 
-            // Building the actor bean
-            ActorDTO actorDTO = ActorDTO.builder()
-                    .id(actorEntity.getId())
-                    .name(actorEntity.getName())
-                    .alias(actorEntity.getAlias())
-                    .description(actorEntity.getDescription())
-                    .imageURL(actorEntity.getImageURL())
-                    .socialMedia(socialMedia)
+            // Building the battle bean
+            BattleDTO battle = BattleDTO.builder()
+                    .id(battleEntity.getId())
+                    .name(battleEntity.getName())
+                    .duration(battleEntity.getDuration())
+                    .publicationDate(battleEntity.getPublicationDate())
+                    .lyrics(battleEntity.getLyrics())
+                    .youtubeLink(battleEntity.getYoutubeLink())
+                    .spotifyLink(battleEntity.getSpotifyLink())
+                    .image(battleEntity.getCoverImageURL())
+                    .characters(characters)
                     .build();
 
-            List<ActorDTO> actors = new ArrayList<>();
-            actors.add(actorDTO);
-
-            // Building the character bean
-            CharacterDTO characterDTO = CharacterDTO.builder()
-                    .id(characterEntity.getId())
-                    .name(characterEntity.getName())
-                    .description(characterEntity.getDescription())
-                    .image(characterEntity.getImageURL())
-                    .actors(actors)
-                    .build();
-
-            // Adding the character to the list of characters in the battle
-            characters.add(characterDTO);
-
-        });
-
-
-        // Building the battle bean
-        BattleDTO battle = BattleDTO.builder()
-                .id(battleEntity.getId())
-                .name(battleEntity.getName())
-                .duration(battleEntity.getDuration())
-                .publicationDate(battleEntity.getPublicationDate())
-                .lyrics(battleEntity.getLyrics())
-                .youtubeLink(battleEntity.getYoutubeLink())
-                .spotifyLink(battleEntity.getSpotifyLink())
-                .image(battleEntity.getCoverImageURL())
-                .characters(characters)
-                .build();
-
-        // Returning the battle
-        return battle;
+            // Returning the battle
+            return battle;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

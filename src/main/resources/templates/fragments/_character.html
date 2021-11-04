@@ -1,7 +1,10 @@
 <div class="card d-flex" style="width: 400px;">
 
+    <!--/*@thymesVar id="character" type="com.anpora.erbhub.dto.CharacterDTO"*/-->
+    <!--/*@thymesVar id="actor" type="com.anpora.erbhub.dto.ActorDTO"*/-->
+
     <!-- Image -->
-    <a href="#">
+    <a th:href="'/character/' + ${character.getId()}">
         <img class="card-img-top" th:src="${character.getImage()}" alt="Card image cap">
     </a>
 

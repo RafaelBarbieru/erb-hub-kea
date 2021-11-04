@@ -1,16 +1,13 @@
 package com.anpora.erbhub.services;
 
 import com.anpora.erbhub.dao.relational.ActorRelDAO;
-import com.anpora.erbhub.dao.relational.BattleRelDAO;
 import com.anpora.erbhub.dao.relational.CharacterRelDAO;
 import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
 import com.anpora.erbhub.dto.ActorDTO;
-import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.dto.SocialMediaDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import com.anpora.erbhub.repositories.ActorRepository;
-import com.anpora.erbhub.repositories.BattleRepository;
 import com.anpora.erbhub.repositories.CharacterRepository;
 import com.anpora.erbhub.repositories.SocialMediaRepository;
 import org.slf4j.Logger;
@@ -86,7 +83,7 @@ public class CharacterService {
     public CharacterDTO buildCharacterDTO(CharacterRelDAO characterEntity) {
 
         // Getting all the actors for this character
-        List<ActorRelDAO> actorsDAO = actorRepository.findActorByCharacter(characterEntity.getId());
+        List<ActorRelDAO> actorsDAO = actorRepository.findActorsByCharacter(characterEntity.getId());
 
         // Building the actors list
         List<ActorDTO> actorsDTO = new ArrayList<>();
