@@ -1,9 +1,7 @@
 package com.anpora.erbhub.repositories;
 
-import com.anpora.erbhub.entities.ActorEntity;
-import com.anpora.erbhub.entities.BattleEntity;
+import com.anpora.erbhub.dao.relational.BattleRelDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
@@ -11,9 +9,9 @@ import java.util.Optional;
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  * Repository class for the "battles" table
  */
-public interface BattleRepository extends JpaRepository<BattleEntity, Long> {
+public interface BattleRepository extends JpaRepository<BattleRelDAO, Long> {
 
-    Optional<BattleEntity> findById(Long id);
-    Optional<BattleEntity> findFirstByOrderByPublicationDateDesc();
+    Optional<BattleRelDAO> findById(Long id);
+    Optional<BattleRelDAO> findFirstByOrderByPublicationDateDesc();
 
 }

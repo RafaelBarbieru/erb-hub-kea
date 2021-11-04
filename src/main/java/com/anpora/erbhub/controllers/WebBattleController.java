@@ -1,10 +1,8 @@
 package com.anpora.erbhub.controllers;
 
 import com.anpora.erbhub.dto.BattleDTO;
-import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import com.anpora.erbhub.services.BattleService;
-import com.anpora.erbhub.services.CharacterService;
 import com.anpora.erbhub.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +14,10 @@ import java.util.List;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
- * Controller for all the views in the application
+ * Controller for all the battles-related views in the application
  */
 @Controller
-public class WebController {
+public class WebBattleController {
 
     // Dependencies
     private BattleService battleService;
@@ -27,7 +25,7 @@ public class WebController {
 
     // Constructor injection
     @Autowired
-    public WebController(
+    public WebBattleController(
             BattleService battleService,
             CommonUtils commonUtils) {
         this.battleService = battleService;
@@ -56,11 +54,6 @@ public class WebController {
         } catch (ResourceNotFoundException ex) {
             return "battle_not_found";
         }
-    }
-
-    @RequestMapping("/characters")
-    public String characters(Model model) throws Exception {
-        List<CharacterDTO> characters = cha
     }
 
 }

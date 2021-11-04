@@ -1,4 +1,4 @@
-package com.anpora.erbhub.entities;
+package com.anpora.erbhub.dao.relational;
 
 import lombok.Data;
 
@@ -15,7 +15,7 @@ import javax.persistence.*;
         name = "actors_social_media",
         pkJoinColumns=@PrimaryKeyJoinColumn(name="social_media_id", referencedColumnName="id")
 )
-public class SocialMediaEntity {
+public class SocialMediaRelDAO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

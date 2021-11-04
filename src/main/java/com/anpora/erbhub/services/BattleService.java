@@ -4,11 +4,11 @@ import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.dto.SocialMediaDTO;
-import com.anpora.erbhub.entities.SocialMediaEntity;
+import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
 import com.anpora.erbhub.repositories.BattleRepository;
 import com.anpora.erbhub.repositories.ActorRepository;
-import com.anpora.erbhub.entities.BattleEntity;
-import com.anpora.erbhub.entities.ActorEntity;
+import com.anpora.erbhub.dao.relational.BattleRelDAO;
+import com.anpora.erbhub.dao.relational.ActorRelDAO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import com.anpora.erbhub.repositories.SocialMediaRepository;
 import org.slf4j.Logger;
@@ -26,10 +26,10 @@ import java.util.Optional;
  * Service class for Battles
  */
 @Service
-public class BattlesService {
+public class BattleService {
 
     // Dependencies
-    private static final Logger LOG = LoggerFactory.getLogger(BattlesService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BattleService.class);
     private Environment env;
     private BattleRepository battleRepository;
     private ActorRepository actorRepository;
@@ -37,7 +37,7 @@ public class BattlesService {
 
     // Constructor injection
     @Autowired
-    public BattlesService(
+    public BattleService(
             final Environment env,
             BattleRepository battleRepository,
             ActorRepository actorRepository,
@@ -71,7 +71,7 @@ public class BattlesService {
      * @return
      */
     public BattleDTO getBattleById(Long id) throws Exception {
-        Optional<BattleEntity> battleEntity = battleRepository.findById(id);
+        Optional<BattleRelDAO> battleEntity = battleRepository.findById(id);
         return buildBattleDTO(
                 battleEntity.orElseThrow(
                         () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
@@ -85,7 +85,7 @@ public class BattlesService {
      * @throws Exception
      */
     public BattleDTO getLastBattle() throws Exception {
-        Optional<BattleEntity> battleEntity = battleRepository.findFirstByOrderByPublicationDateDesc();
+        Optional<BattleRelDAO> battleEntity = battleRepository.findFirstByOrderByPublicationDateDesc();
         return buildBattleDTO(
                 battleEntity.orElseThrow(
                         () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
@@ -94,17 +94,17 @@ public class BattlesService {
     }
 
     /**
-     * Builds the battle bean
+     * Builds the battle DTO
      *
      * @param battleEntity
      * @return
      */
-    private BattleDTO buildBattleDTO(BattleEntity battleEntity) {
+    private BattleDTO buildBattleDTO(BattleRelDAO battleEntity) {
         List<CharacterDTO> characters = new ArrayList<>();
 
         // Getting the characters involved in the current battle
         battleEntity.getCharacters().forEach(characterEntity -> {
-            ActorEntity actorEntity;
+            ActorRelDAO actorEntity;
 
             // Filtering out the actors that didn't play the character, in case there is more than one
             if (characterEntity.getActors().size() > 1) {
@@ -117,7 +117,7 @@ public class BattlesService {
             }
 
             // Getting the social media of the actor
-            List<SocialMediaEntity> socialMediaEntityList = socialMediaRepository
+            List<SocialMediaRelDAO> socialMediaEntityList = socialMediaRepository
                     .findSocialMediaByActorID(actorEntity.getId());
 
             // Building the social media bean

@@ -1,0 +1,28 @@
+<div class="card d-flex" style="width: 400px;">
+
+    <!-- Image -->
+    <a href="#">
+        <img class="card-img-top" th:src="${character.getImage()}" alt="Card image cap">
+    </a>
+
+    <!-- Body -->
+    <div class="card-body">
+
+        <!-- Title -->
+        <b class="card-title" th:text="${character.getName()}"></b>
+        <br>
+
+        <!-- Lyrics -->
+        <p class="card-text erb-lyrics" th:text="${character.getDescription()}"></p>
+
+        <!-- Actors -->
+        <div>
+            Actors:
+            <a
+                    th:each="actor : ${character.getActors()}"
+                    th:href="'/actor/' + ${actor.getId()}"
+                    th:text="${actor.getAlias()} + ' | '">
+            </a>
+        </div>
+    </div>
+</div>

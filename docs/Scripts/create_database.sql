@@ -1,1 +1,0 @@
-CREATE DATABASE `erb_hub`;

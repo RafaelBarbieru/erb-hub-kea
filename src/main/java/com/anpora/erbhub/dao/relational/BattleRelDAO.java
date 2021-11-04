@@ -1,4 +1,4 @@
-package com.anpora.erbhub.entities;
+package com.anpora.erbhub.dao.relational;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "battles")
-public class BattleEntity {
+public class BattleRelDAO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +36,7 @@ public class BattleEntity {
     )
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<CharacterEntity> characters;
+    private List<CharacterRelDAO> characters;
 
 
     @Column(name = "lyrics", nullable = false)

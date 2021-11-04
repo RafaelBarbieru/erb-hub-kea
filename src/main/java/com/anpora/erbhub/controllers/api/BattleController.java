@@ -1,7 +1,7 @@
 package com.anpora.erbhub.controllers.api;
 
 import com.anpora.erbhub.dto.BattleDTO;
-import com.anpora.erbhub.services.BattlesService;
+import com.anpora.erbhub.services.BattleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -22,27 +22,27 @@ public class BattleController {
 
     // Dependencies
     private Environment env;
-    private BattlesService battlesService;
+    private BattleService battleService;
 
     // Constructor injection
     @Autowired
     public BattleController(
             Environment env,
-            BattlesService battlesService) {
+            BattleService battleService) {
         this.env = env;
-        this.battlesService = battlesService;
+        this.battleService = battleService;
     }
 
     // Endpoints
     @GetMapping("/api/battles")
     @ResponseBody
     public ResponseEntity<List<BattleDTO>> getAllBattles() throws Exception {
-        return new ResponseEntity<>(battlesService.getAllBattles(), HttpStatus.OK);
+        return new ResponseEntity<>(battleService.getAllBattles(), HttpStatus.OK);
     }
 
     @GetMapping("/api/battle/{id}")
     public ResponseEntity<BattleDTO> getBattle(@PathVariable Long id) throws Exception {
-        return new ResponseEntity<>(battlesService.getBattleById(id), HttpStatus.OK);
+        return new ResponseEntity<>(battleService.getBattleById(id), HttpStatus.OK);
     }
 
 //    @PostMapping("/battle/add")

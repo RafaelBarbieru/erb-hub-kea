@@ -1,6 +1,6 @@
 package com.anpora.erbhub.repositories;
 
-import com.anpora.erbhub.entities.CharacterEntity;
+import com.anpora.erbhub.dao.relational.CharacterRelDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -8,8 +8,8 @@ import java.util.Optional;
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  */
-public interface CharacterRepository extends JpaRepository<CharacterEntity, Long> {
+public interface CharacterRepository extends JpaRepository<CharacterRelDAO, Long> {
 
-    Optional<CharacterEntity> findById(Long id);
+    Optional<CharacterRelDAO> findById(Long id);
 
 }
