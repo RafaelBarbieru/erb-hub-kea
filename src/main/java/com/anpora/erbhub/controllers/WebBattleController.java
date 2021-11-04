@@ -1,8 +1,10 @@
 package com.anpora.erbhub.controllers;
 
 import com.anpora.erbhub.dto.BattleDTO;
+import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
-import com.anpora.erbhub.services.BattlesService;
+import com.anpora.erbhub.services.BattleService;
+import com.anpora.erbhub.services.CharacterService;
 import com.anpora.erbhub.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,15 +22,15 @@ import java.util.List;
 public class WebController {
 
     // Dependencies
-    private BattlesService battlesService;
+    private BattleService battleService;
     private CommonUtils commonUtils;
 
     // Constructor injection
     @Autowired
     public WebController(
-            BattlesService battlesService,
+            BattleService battleService,
             CommonUtils commonUtils) {
-        this.battlesService = battlesService;
+        this.battleService = battleService;
         this.commonUtils = commonUtils;
     }
 
@@ -40,7 +42,7 @@ public class WebController {
 
     @RequestMapping("/battles")
     public String battles(Model model) throws Exception {
-        List<BattleDTO> battles = battlesService.getAllBattles();
+        List<BattleDTO> battles = battleService.getAllBattles();
         model.addAttribute("battles", battles);
         return "battles";
     }
@@ -48,12 +50,17 @@ public class WebController {
     @RequestMapping("/battle/{id}")
     public String battle(Model model, @PathVariable Long id) throws Exception {
         try {
-            BattleDTO battle = battlesService.getBattleById(id);
+            BattleDTO battle = battleService.getBattleById(id);
             model.addAttribute("battle", battle);
             return "battle";
         } catch (ResourceNotFoundException ex) {
             return "battle_not_found";
         }
+    }
+
+    @RequestMapping("/characters")
+    public String characters(Model model) throws Exception {
+        List<CharacterDTO> characters = cha
     }
 
 }
