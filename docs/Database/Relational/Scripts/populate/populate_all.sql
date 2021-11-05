@@ -56,6 +56,17 @@ INSERT INTO `battles`(name, duration, publication_date, lyrics, youtube_link, sp
     current_timestamp(),
     current_timestamp()
 );
+INSERT INTO `battles`(name, duration, publication_date, lyrics, youtube_link, spotify_link, cover_image, created_at, updated_at) VALUES(
+	'Donald Trump vs Hillary Clinton', 
+	'274', 
+	DATE("2016-10-27"), 
+	"I've been in this game too long \nI'm a public servant \nHave been since I met MLK in person \nI'm a woman of the people, that's for certain \nYou're a man of the people who don't like turbans \nI was living in the West Wing while you were professional wrestling \nYou got skin like Russian dressing \nFrom too much Russian investing \nYou been going bankrupt since the 90's \nIf I was in Iran, you couldn't find me \nYou don't care about the job, Trump \nYou just think the desk is shiny \nI said that I respect your children \nBut that wasn't quite right, yo \nLooking like some extras from American Psycho \nFirst name is Hillary, middle name, Rodham, last name is Clinton and lyrics, I got 'em \nYou fire celebrities on The Apprentice \nMotherfucker, I fire bin Laden! \nHow do I say this? You're racist \nOoh, you must get so pissed that your hands are too small to stop and frisk \nSo you use your fingers to touch chicks \n(She's only 12 years old) \nThat's enough, shit \n(But she's married, sir) \nJust gotta get pushy \n(That's your daughter) \nWell, grab her by the pussy \nThat's assault, brotha! \nDon't tell me the victim's at fault, sucka! \nYou don't know shit about steaks, yucka! \nBut the ones on the 8th are great, muthafucka! \nBetter save the date, I'm gonna rock the vote \nBad bitch on the scene like Murder, She Wrote \nSo go ahead Donald, let me see your flow \nI brought Michelle's speech, borrow some quotes \nLet me just say I respect all females \nBut your rhymes are trash \nPut 'em next to your emails \nOur country's in crisis \nWho wants to vote for the mother of ISIS? \nThat might not be exactly true \nBut I don't do politeness \nYou wanna talk about misogyny? \nYour Bill's worse than Cosby \nHe left a mess on that dress \nLike you left in Benghazi \nYou wanna break the glass ceiling \nHillary, I sense it \nBut the only crack you'll find is my ass pressed against it \nThe numbers are in and I'm right on your tail \nYou don't have the stamina, baby, you're frail \nThis will be just like '08 when you fail \nBut Trump will appoint you to jail \nHow do I say this? You're a two \nAnd you almost lost the primary to a socialist Jew \nWhat do the American people gotta yankee doodle do \nTo get it through your fat face that they're just not that into you? \nThey want a strong male leader, who can stand up to China (China, China, China) \nNot a crooked little wishy-washy bleeding heart vagina \nI'm gonna run these streets like I run my casinos \nMore police and less Latinos \nWhile you bury us in debt buying poor people socks \nI'll create jobs tearing down mosques \nThen I'll use all the best rocks from the site to build a wall \nDip it in gold and make Mexico pay for it all \nI'll make this country great again \nWe'll all be living large \nI'll tell Congress you're fired and put Charles in charge \n'Cause this whole system's rigged and we all know the riggers \nFor the last eight years, this country's been run by- \nCAW! \nAre you fucking kidding me with this blah blah blah? \nI've half a mind to feed you both to my oversized- \nCAW! \nI've heard more thoughtful discussion up in TMZ \nYou two got brother blocking brother on their Facebook feed \nI'm so sick and tired of this ridiculous shit \nIf this is the best my party gets, then my party should quit \nHa! \nI'm sorry, did I say something that you found funny? \nWipe that creepy-ass smile off your face and beat this dummy! \nAnd if she does win the White House, be a man and hold the door \nDon't get your fans stirred up in some sorta Twitter civil war \nHere's an equal opportunity smack down in the sequel \nThat's of the people, by the people, for the people \nEAGLE! \nCAW!", 
+	'https://www.youtube.com/watch?v=Kbryz0mxuMY&ab_channel=ERB', 
+	'https://open.spotify.com/track/5J8FfTuIUx19i6MeCoonkk?si=226e9fa9d58b4ffc', 
+	'https://i.ytimg.com/vi/Kbryz0mxuMY/maxresdefault.jpg',
+    current_timestamp(),
+    current_timestamp()
+);
 
 -- POPULATING CHARACTERS
 USE `erb_hub`;
@@ -130,6 +141,20 @@ INSERT INTO `characters`(name, description, image, created_at, updated_at) VALUE
 	current_timestamp(),
 	current_timestamp()
 );
+INSERT INTO `characters`(name, description, image, created_at, updated_at) VALUES(
+	'Hillary Clinton',
+	"Hillary Diane Rodham Clinton (née Rodham; born October 26, 1947) is an American politician, diplomat, lawyer, writer, and public speaker who served as the 67th United States secretary of state from 2009 to 2013, as a United States senator from New York from 2001 to 2009, and as first lady of the United States from 1993 to 2001 as the wife of President Bill Clinton. A member of the Democratic Party, she was the party's nominee for president in the 2016 presidential election, becoming the first woman to win a presidential nomination by a major U.S. political party. Clinton won the popular vote in the election, making her the first woman to do so. However, she failed to win the Electoral College.",
+	'https://erb-hub-pics-bucket.s3.eu-north-1.amazonaws.com/hillaryclinton.png',
+	current_timestamp(),
+	current_timestamp()
+);
+INSERT INTO `characters`(name, description, image, created_at, updated_at) VALUES(
+	'Abraham Lincoln',
+	"Abraham Lincoln (February 12, 1809 – April 15, 1865) was an American lawyer and statesman who served as the 16th president of the United States from 1861 until his assassination in 1865. Lincoln led the nation through the American Civil War and succeeded in preserving the Union, abolishing slavery, bolstering the federal government, and modernizing the U.S. economy.",
+	'https://erb-hub-pics-bucket.s3.eu-north-1.amazonaws.com/abrahanlincoln.png',
+	current_timestamp(),
+	current_timestamp()
+);
 
 -- POPULATING ACTORS
 INSERT INTO `actors`(name, alias, description, image, created_at, updated_at) VALUES(
@@ -156,11 +181,20 @@ INSERT INTO `actors`(name, alias, description, image, created_at, updated_at) VA
     current_timestamp(),
     current_timestamp()
 );
+INSERT INTO `actors`(name, alias, description, image, created_at, updated_at) VALUES(
+	'Kimmy Gatewood',
+	NULL,
+    "Kimmy Gatewood is an American actress, director, writer and singer. Gatewood is a native of Silver Spring, Maryland and was educated at Paint Branch High School. She has been in a long-running comedy duo with fellow GLOW actress Rebekka Johnson.",
+    'https://m.media-amazon.com/images/M/MV5BODY2ZDZhOTQtMWZhMS00MTQ3LWFlNWYtOWRlN2E1NmJiMTIxXkEyXkFqcGdeQXVyNTI5MjAzMDI@._V1_.jpg',
+    current_timestamp(),
+    current_timestamp()
+);
 
 -- POPULATING SOCIAL MEDIA
 INSERT INTO `social_media`(name, created_at, updated_at) VALUES('YouTube', current_timestamp(), current_timestamp());
 INSERT INTO `social_media`(name, created_at, updated_at) VALUES('Twitter', current_timestamp(), current_timestamp());
 INSERT INTO `social_media`(name, created_at, updated_at) VALUES('Spotify', current_timestamp(), current_timestamp());
+INSERT INTO `social_media`(name, created_at, updated_at) VALUES('Instagram', current_timestamp(), current_timestamp());
 
 -- POPULATING BATTLES_CHARACTERS
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(1, 1);
@@ -173,11 +207,15 @@ INSERT INTO `battles_characters`(battle_id, character_id) VALUES(4, 7);
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(4, 8);
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(5, 9);
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(5, 10);
+INSERT INTO `battles_characters`(battle_id, character_id) VALUES(6, 5);
+INSERT INTO `battles_characters`(battle_id, character_id) VALUES(6, 11);
+INSERT INTO `battles_characters`(battle_id, character_id) VALUES(6, 12);
 
 -- POPULATING ACTORS_CHARACTERS
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 2);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 4);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 6);
+INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 7);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 8);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 9);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(2, 1);
@@ -185,6 +223,8 @@ INSERT INTO `actors_characters`(actor_id, character_id) VALUES(2, 5);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(2, 7);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(2, 10);
 INSERT INTO `actors_characters`(actor_id, character_id) VALUES(3, 3);
+INSERT INTO `actors_characters`(actor_id, character_id) VALUES(4, 11);
+INSERT INTO `actors_characters`(actor_id, character_id) VALUES(1, 12);
 
 -- POPULATING ACTORS_SOCIAL_MEDIA
 -- Nice Peter - YouTube
@@ -205,3 +245,7 @@ INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https
 INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://twitter.com/davepbrown', 3, 2);
 -- Boyinaband - Spotify
 INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://open.spotify.com/artist/7kfzadZaOgR90Tp8OYH5gM?si=DUhsSR1RQDaDVQd4TaIaHA&dl_branch=1', 3, 3);
+-- Kimmy Gatewood - Instagram
+INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://www.instagram.com/kimmygatewood', 4, 4);
+-- Kimmy Gatewood - Twitter
+INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://twitter.com/kimmygatewood', 4, 2);

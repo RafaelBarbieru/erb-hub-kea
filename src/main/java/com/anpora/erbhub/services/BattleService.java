@@ -3,8 +3,6 @@ package com.anpora.erbhub.services;
 import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
-import com.anpora.erbhub.dto.SocialMediaDTO;
-import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
 import com.anpora.erbhub.repositories.BattleRepository;
 import com.anpora.erbhub.repositories.ActorRepository;
 import com.anpora.erbhub.dao.relational.BattleRelDAO;
@@ -81,25 +79,29 @@ public class BattleService {
     }
 
     /**
-     * Gets the latest battle according to the publication date
+     * Gets all the battles in which the specified character has played.
      *
-     * @return
+     * @return a list of all the battles in which the character has played.
      * @throws Exception
      */
-    public BattleDTO getLastBattle() throws Exception {
-        Optional<BattleRelDAO> battleEntity = battleRepository.findFirstByOrderByPublicationDateDesc();
-        return buildBattleDTO(
-                battleEntity.orElseThrow(
-                        () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
-                )
-        );
+    public List<BattleDTO> getBattlesByCharacterId(Long id) throws Exception {
+        List<BattleRelDAO> battleEntity = battleRepository.getBattleByCharacterId(id);
+        List<BattleDTO> battles = new ArrayList<>();
+        battleEntity.forEach(battle -> {
+            BattleDTO battleDTO = BattleDTO.builder()
+                    .id(battle.getId())
+                    .name(battle.getName())
+                    .build();
+            battles.add(battleDTO);
+        });
+        return battles;
     }
 
     /**
      * Builds the battle DTO
      *
      * @param battleEntity
-     * @return
+     * @return the battle DTO
      */
     private BattleDTO buildBattleDTO(BattleRelDAO battleEntity) {
         try {
@@ -110,29 +112,24 @@ public class BattleService {
                 List<ActorRelDAO> actorsEntity = new ArrayList<>();
 
                 // Filtering out the actors that didn't play the character, in case there is more than one
-                if (characterEntity.getActors().size() > 1) {
+                actorsEntity = actorRepository.findActorsByCharacterAndBattle(
+                        characterEntity.getId(),
+                        battleEntity.getId()
+                );
 
-                    actorsEntity = actorRepository.findActorsByCharacterAndBattle(
-                            characterEntity.getId(),
-                            battleEntity.getId()
-                    );
-                } else {
-                    actorsEntity.add(characterEntity.getActors().get(0));
-                }
-
-                // Building the actor bean
-                ActorRelDAO actorEntity = actorsEntity.get(0);//TODO: Make this work for more than one actor as well
-                ActorDTO actorDTO = ActorDTO.builder()
-                        .id(actorEntity.getId())
-                        .name(actorEntity.getName())
-                        .alias(actorEntity.getAlias())
-                        .description(actorEntity.getDescription())
-                        .imageURL(actorEntity.getImageURL())
-                        .socialMedia(null) // We don't need the social media for this
-                        .build();
-
+                // Building the actor beans
                 List<ActorDTO> actors = new ArrayList<>();
-                actors.add(actorDTO);
+                actorsEntity.forEach(actor -> {
+                    ActorDTO actorDTO = ActorDTO.builder()
+                            .id(actor.getId())
+                            .name(actor.getName())
+                            .alias(actor.getAlias())
+                            .description(actor.getDescription())
+                            .imageURL(actor.getImageURL())
+                            .socialMedia(null) // We don't need the social media for this
+                            .build();
+                    actors.add(actorDTO);
+                });
 
                 // Building the character bean
                 CharacterDTO characterDTO = CharacterDTO.builder()

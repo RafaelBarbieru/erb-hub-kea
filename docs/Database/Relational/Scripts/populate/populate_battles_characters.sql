@@ -10,3 +10,6 @@ INSERT INTO `battles_characters`(battle_id, character_id) VALUES(4, 7);
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(4, 8);
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(5, 9);
 INSERT INTO `battles_characters`(battle_id, character_id) VALUES(5, 10);
+INSERT INTO `battles_characters`(battle_id, character_id) VALUES(6, 5);
+INSERT INTO `battles_characters`(battle_id, character_id) VALUES(6, 11);
+INSERT INTO `battles_characters`(battle_id, character_id) VALUES(6, 12);

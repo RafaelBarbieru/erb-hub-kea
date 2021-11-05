@@ -29,9 +29,9 @@
             <li class="list-group-item">
                 Battles:
                 <a
-                        th:href="'/battle/' + ${actor.getId()}"
-                        th:each="actor : ${character.getActors()}"
-                        th:text="${actor.getAlias()} + ' | '"></a>
+                        th:href="'/battle/' + ${battle.getId()}"
+                        th:each="battle : ${battles}"
+                        th:text="${battle.getName()} + ' | '"></a>
             </li>
             <!-- Actors -->
             <li class="list-group-item">
@@ -39,7 +39,7 @@
                 <a
                         th:href="'/actor/' + ${actor.getId()}"
                         th:each="actor : ${character.getActors()}"
-                        th:text="${actor.getAlias()} + ' | '"></a>
+                        th:text="(${actor.getAlias()} ?: ${actor.getName()}) + ' | '"></a>
             </li>
         </ul>
         <div class="card-body">

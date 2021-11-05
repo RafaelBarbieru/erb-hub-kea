@@ -24,7 +24,7 @@
             <a
                     th:each="actor : ${character.getActors()}"
                     th:href="'/actor/' + ${actor.getId()}"
-                    th:text="${actor.getAlias()} + ' | '">
+                    th:text="(${actor.getAlias()} ?: ${actor.getName()}) + ' | '">
             </a>
         </div>
     </div>

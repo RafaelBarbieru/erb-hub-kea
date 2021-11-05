@@ -18,3 +18,7 @@ INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https
 INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://twitter.com/davepbrown', 3, 2);
 -- Boyinaband - Spotify
 INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://open.spotify.com/artist/7kfzadZaOgR90Tp8OYH5gM?si=DUhsSR1RQDaDVQd4TaIaHA&dl_branch=1', 3, 3);
+-- Kimmy Gatewood - Instagram
+INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://www.instagram.com/kimmygatewood', 4, 4);
+-- Kimmy Gatewood - Twitter
+INSERT INTO `actors_social_media`(link, actor_id, social_media_id) VALUES('https://twitter.com/kimmygatewood', 4, 2);

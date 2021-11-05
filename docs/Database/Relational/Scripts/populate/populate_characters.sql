@@ -70,3 +70,17 @@ INSERT INTO `characters`(name, description, image, created_at, updated_at) VALUE
 	current_timestamp(),
 	current_timestamp()
 );
+INSERT INTO `characters`(name, description, image, created_at, updated_at) VALUES(
+	'Hillary Clinton',
+	"Hillary Diane Rodham Clinton (née Rodham; born October 26, 1947) is an American politician, diplomat, lawyer, writer, and public speaker who served as the 67th United States secretary of state from 2009 to 2013, as a United States senator from New York from 2001 to 2009, and as first lady of the United States from 1993 to 2001 as the wife of President Bill Clinton. A member of the Democratic Party, she was the party's nominee for president in the 2016 presidential election, becoming the first woman to win a presidential nomination by a major U.S. political party. Clinton won the popular vote in the election, making her the first woman to do so. However, she failed to win the Electoral College.",
+	'https://erb-hub-pics-bucket.s3.eu-north-1.amazonaws.com/hillaryclinton.png',
+	current_timestamp(),
+	current_timestamp()
+);
+INSERT INTO `characters`(name, description, image, created_at, updated_at) VALUES(
+	'Abraham Lincoln',
+	"Abraham Lincoln (February 12, 1809 – April 15, 1865) was an American lawyer and statesman who served as the 16th president of the United States from 1861 until his assassination in 1865. Lincoln led the nation through the American Civil War and succeeded in preserving the Union, abolishing slavery, bolstering the federal government, and modernizing the U.S. economy.",
+	'https://erb-hub-pics-bucket.s3.eu-north-1.amazonaws.com/abrahanlincoln.png',
+	current_timestamp(),
+	current_timestamp()
+);

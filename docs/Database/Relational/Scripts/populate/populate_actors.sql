@@ -24,3 +24,11 @@ INSERT INTO `actors`(name, alias, description, image, created_at, updated_at) VA
     current_timestamp(),
     current_timestamp()
 );
+INSERT INTO `actors`(name, alias, description, image, created_at, updated_at) VALUES(
+	'Kimmy Gatewood',
+	NULL,
+    "Kimmy Gatewood is an American actress, director, writer and singer. Gatewood is a native of Silver Spring, Maryland and was educated at Paint Branch High School. She has been in a long-running comedy duo with fellow GLOW actress Rebekka Johnson.",
+    'https://m.media-amazon.com/images/M/MV5BODY2ZDZhOTQtMWZhMS00MTQ3LWFlNWYtOWRlN2E1NmJiMTIxXkEyXkFqcGdeQXVyNTI5MjAzMDI@._V1_.jpg',
+    current_timestamp(),
+    current_timestamp()
+);
