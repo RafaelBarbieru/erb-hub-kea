@@ -9,9 +9,7 @@ CREATE TABLE IF NOT EXISTS	`battles`(
 	`lyrics` text	NOT NULL,
 	`youtube_link` varchar(255) DEFAULT NULL,
 	`spotify_link` varchar(255) DEFAULT	NULL,
-	`cover_image` VARCHAR(255)	DEFAULT NULL,	
-	`created_at` timestamp DEFAULT NULL,
-	`updated_at` timestamp DEFAULT NULL,
+	`cover_image` VARCHAR(255)	DEFAULT NULL,
 	
 	PRIMARY KEY (`id`)
 	
@@ -23,8 +21,6 @@ CREATE TABLE IF NOT EXISTS `characters` (
 	`name` varchar(255) NOT NULL,
 	`description` text DEFAULT NULL,
 	`image` varchar(255) DEFAULT NULL,
-	`created_at` timestamp DEFAULT NULL,
-	`updated_at` timestamp DEFAULT NULL,
 	
 	PRIMARY KEY (`id`)	 
 	
@@ -48,8 +44,6 @@ CREATE TABLE IF NOT EXISTS `actors` (
 	`alias` varchar(255) NULL,   
 	`description` text NULL,
 	`image` varchar(255) NULL,
-	`created_at` timestamp DEFAULT NULL,
-	`updated_at` timestamp DEFAULT NULL,
 	
 	PRIMARY KEY (`id`)
 	
@@ -70,8 +64,6 @@ CREATE TABLE IF NOT EXISTS `social_media` (
 
 	`id` int NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,	 
-	`created_at` timestamp DEFAULT NULL,
-	`updated_at` timestamp DEFAULT NULL,
 	
 	PRIMARY KEY (`id`)	 
 	
