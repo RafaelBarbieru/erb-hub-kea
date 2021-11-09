@@ -1,5 +1,6 @@
 package com.anpora.erbhub.controllers;
 
+import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
 import com.anpora.erbhub.services.BattleService;
@@ -49,7 +50,9 @@ public class WebBattleController {
     public String battle(Model model, @PathVariable Long id) throws Exception {
         try {
             BattleDTO battle = battleService.getBattleById(id);
+            List<ActorDTO> actors = battleService.getActorsOfBattle(id);
             model.addAttribute("battle", battle);
+            model.addAttribute("actors", actors);
             return "battle";
         } catch (ResourceNotFoundException ex) {
             return "battle_not_found";

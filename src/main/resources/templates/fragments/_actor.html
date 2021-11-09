@@ -1,0 +1,36 @@
+<div class="card d-flex" style="width: 400px;">
+
+    <!--/*@thymesVar id="character" type="com.anpora.erbhub.dto.CharacterDTO"*/-->
+    <!--/*@thymesVar id="actor" type="com.anpora.erbhub.dto.ActorDTO"*/-->
+    <!--/*@thymesVar id="battle" type="com.anpora.erbhub.dto.BattleDTO"*/-->
+    <!--/*@thymesVar id="characters" type="java.util.Map"*/-->
+    <!--/*@thymesVar id="charactersValue" type="java.util.List"*/-->
+
+    <!-- Image -->
+    <a th:href="'/actor/' + ${actor.getId()}">
+        <img class="card-img-top" th:src="${actor.getImage()}" alt="Card image cap">
+    </a>
+
+    <!-- Body -->
+    <div class="card-body">
+
+        <!-- Name (Alias) -->
+        <b class="card-title" th:text="${actor.getName()}"></b>
+        <b th:if="${actor.getAlias() != null}" th:text="' (' + ${actor.getAlias()} + ')'"></b>
+        <br>
+
+        <!-- Description -->
+        <p class="card-text erb-lyrics" th:text="${actor.getDescription()}"></p>
+
+        <!-- Characters -->
+        <div>
+            Characters:
+            <a
+                th:each="character,charStat : ${characters.get(actor.id)}" th:unless="${charStat.index >= 2}"
+                th:href="'/character/' + ${character.getId()}"
+                th:text="${character.getName()} + ' | '">
+            </a>
+        </div>
+
+    </div>
+</div>

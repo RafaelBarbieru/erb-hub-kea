@@ -17,7 +17,7 @@ public class ActorDTO {
     private String name;
     private String alias;
     private String description;
-    private String imageURL;
+    private String image;
     private List<SocialMediaDTO> socialMedia;
 
     @Override

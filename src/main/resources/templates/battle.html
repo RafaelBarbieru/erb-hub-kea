@@ -37,7 +37,7 @@
                 Actors:
                 <a
                         th:href="'/actor/' + ${actor.getId()}"
-                        th:each="actor : ${@commonUtils.getActorsFromCharacters(battle.getCharacters())}"
+                        th:each="actor : ${actors}"
                         th:text="(${actor.getAlias()} ?: ${actor.getName()}) + ' | '"></a>
             </li>
         </ul>

@@ -110,7 +110,7 @@ public class CharacterService {
                     .name(actorDAO.getName())
                     .alias(actorDAO.getAlias())
                     .description(actorDAO.getDescription())
-                    .imageURL(actorDAO.getImageURL())
+                    .image(actorDAO.getImageURL())
                     .socialMedia(socialMedia)
                     .build();
             actorsDTO.add(actorDTO);
