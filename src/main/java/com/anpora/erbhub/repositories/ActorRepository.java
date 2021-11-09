@@ -26,7 +26,7 @@ public interface ActorRepository extends JpaRepository<ActorRelDAO, Long> {
     List<ActorRelDAO> findActorsByCharacter(Long characterId);
 
     @Query(nativeQuery = true, value =
-            "SELECT * FROM battles B " +
+            "SELECT A.* FROM battles B " +
                     "JOIN battles_characters BC on B.id = BC.battle_id " +
                     "JOIN characters C on C.id = BC.character_id " +
                     "JOIN actors_characters AC on C.id = AC.character_id " +
