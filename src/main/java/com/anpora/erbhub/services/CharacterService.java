@@ -99,7 +99,7 @@ public class CharacterService {
                 SocialMediaDTO socialMediaDTO = SocialMediaDTO.builder()
                         .id(socialMediaEntity.getId())
                         .name(socialMediaEntity.getName())
-                        .link(socialMediaEntity.getLink())
+                        .link(socialMediaRepository.getLinkByActorIDAndSocialMediaID(actorDAO.getId(), socialMediaEntity.getId()))
                         .build();
                 socialMedia.add(socialMediaDTO);
             });

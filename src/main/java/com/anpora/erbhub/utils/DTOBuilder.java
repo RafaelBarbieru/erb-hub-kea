@@ -87,11 +87,11 @@ public class DTOBuilder {
                 .build();
     }
 
-    public static SocialMediaDTO buildSocialMedia(SocialMediaRelDAO account) {
+    public static SocialMediaDTO buildSocialMedia(SocialMediaRelDAO account, String link) {
         return SocialMediaDTO.builder()
                 .id(account.getId())
                 .name(account.getName())
-                .link(account.getLink())
+                .link(link)
                 .build();
     }
 

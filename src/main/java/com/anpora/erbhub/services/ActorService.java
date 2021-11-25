@@ -114,7 +114,11 @@ public class ActorService {
 
         // Building the social media DTO
         List<SocialMediaDTO> socialMedia = new ArrayList<>();
-        socialMediaDAOList.forEach(account -> socialMedia.add(DTOBuilder.buildSocialMedia(account)));
+        socialMediaDAOList.forEach(account -> {
+                String link = socialMediaRepository
+                        .getLinkByActorIDAndSocialMediaID(actorEntity.getId(), account.getId());
+            socialMedia.add(DTOBuilder.buildSocialMedia(account, link));
+        });
 
         // Building the actor DTO for each actor entity found
         ActorDTO actorDTO = DTOBuilder.buildActorFull(actorEntity, socialMedia);

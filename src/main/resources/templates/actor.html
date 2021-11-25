@@ -46,10 +46,12 @@
 
             <!-- Social Media -->
             <li class="list-group-item">
-                Actors:
-                <a href="https://twitter.com/nicepeter" target="_blank">Twitter | </a>
-                <a href="https://www.youtube.com/channel/UC2_ZUXs5oDv9Crj3f72j9Yw" target="_blank">YouTube | </a>
-                <a href="https://open.spotify.com/artist/5qcFSzd44Md3Ub2tNngTte" target="_blank">Spotify | </a>
+                Social Media:
+                <a th:each="account : ${actor.getSocialMedia()}"
+                   th:href="${account.getLink()}"
+                   th:text="${account.getName()} + ' | '"
+                   target="_blank">
+                </a>
             </li>
         </ul>
         <div class="card-body">

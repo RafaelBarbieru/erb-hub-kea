@@ -11,10 +11,6 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "social_media")
-@SecondaryTable(
-        name = "actors_social_media",
-        pkJoinColumns=@PrimaryKeyJoinColumn(name="social_media_id", referencedColumnName="id")
-)
 public class SocialMediaRelDAO {
 
     @Id
@@ -24,8 +20,5 @@ public class SocialMediaRelDAO {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(table="actors_social_media", name="link", nullable = false)
-    private String link;
 
 }
