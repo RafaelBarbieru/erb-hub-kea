@@ -7,10 +7,10 @@ import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.dto.SocialMediaDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
-import com.anpora.erbhub.repositories.ActorRepository;
-import com.anpora.erbhub.repositories.BattleRepository;
-import com.anpora.erbhub.repositories.CharacterRepository;
-import com.anpora.erbhub.repositories.SocialMediaRepository;
+import com.anpora.erbhub.repositories.relational.ActorRelRepository;
+import com.anpora.erbhub.repositories.relational.BattleRelRepository;
+import com.anpora.erbhub.repositories.relational.CharacterRelRepository;
+import com.anpora.erbhub.repositories.relational.SocialMediaRelRepository;
 import com.anpora.erbhub.utils.DTOBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -25,24 +25,24 @@ public class ActorService {
 
     // Dependencies
     private Environment env;
-    private BattleRepository battleRepository;
-    private CharacterRepository characterRepository;
-    private ActorRepository actorRepository;
-    private SocialMediaRepository socialMediaRepository;
+    private BattleRelRepository battleRelRepository;
+    private CharacterRelRepository characterRelRepository;
+    private ActorRelRepository actorRelRepository;
+    private SocialMediaRelRepository socialMediaRelRepository;
 
     // Constructor injection
     @Autowired
     public ActorService(
             final Environment env,
-            final BattleRepository battleRepository,
-            final CharacterRepository characterRepository,
-            ActorRepository actorRepository,
-            SocialMediaRepository socialMediaRepository) {
+            final BattleRelRepository battleRelRepository,
+            final CharacterRelRepository characterRelRepository,
+            ActorRelRepository actorRelRepository,
+            SocialMediaRelRepository socialMediaRelRepository) {
         this.env = env;
-        this.battleRepository = battleRepository;
-        this.characterRepository = characterRepository;
-        this.actorRepository = actorRepository;
-        this.socialMediaRepository = socialMediaRepository;
+        this.battleRelRepository = battleRelRepository;
+        this.characterRelRepository = characterRelRepository;
+        this.actorRelRepository = actorRelRepository;
+        this.socialMediaRelRepository = socialMediaRelRepository;
     }
 
     // Methods
@@ -56,7 +56,7 @@ public class ActorService {
         List<ActorDTO> actors = new ArrayList<>();
 
         // Retrieving all the actors from the database
-        actorRepository.findAll().forEach(actor -> actors.add(buildActorDTO(actor)));
+        actorRelRepository.findAll().forEach(actor -> actors.add(buildActorDTO(actor)));
 
         // Returning the actors
         return actors;
@@ -67,7 +67,7 @@ public class ActorService {
         List<BattleDTO> battles = new ArrayList<>();
 
         // Retrieving all the battles for this actor
-        battleRepository.getBattlesFromActor(actorId).forEach(
+        battleRelRepository.getBattlesFromActor(actorId).forEach(
                 battle -> battles.add(DTOBuilder.buildBattleSimple(battle))
         );
 
@@ -79,7 +79,7 @@ public class ActorService {
         List<CharacterDTO> characters = new ArrayList<>();
 
         // Retrieving all the characters for this actor
-        characterRepository.getCharactersFromActor(actorId).forEach(
+        characterRelRepository.getCharactersFromActor(actorId).forEach(
                 character -> characters.add(DTOBuilder.buildCharacterSimple(character))
         );
 
@@ -93,7 +93,7 @@ public class ActorService {
      * @return
      */
     public ActorDTO getActorById(Long id) throws Exception {
-        Optional<ActorRelDAO> battleEntity = actorRepository.findById(id);
+        Optional<ActorRelDAO> battleEntity = actorRelRepository.findById(id);
         return buildActorDTO(
                 battleEntity.orElseThrow(
                         () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
@@ -109,13 +109,13 @@ public class ActorService {
      */
     public ActorDTO buildActorDTO(ActorRelDAO actorEntity) {
 
-        List<SocialMediaRelDAO> socialMediaDAOList = socialMediaRepository
+        List<SocialMediaRelDAO> socialMediaDAOList = socialMediaRelRepository
                 .findSocialMediaByActorID(actorEntity.getId());
 
         // Building the social media DTO
         List<SocialMediaDTO> socialMedia = new ArrayList<>();
         socialMediaDAOList.forEach(account -> {
-                String link = socialMediaRepository
+                String link = socialMediaRelRepository
                         .getLinkByActorIDAndSocialMediaID(actorEntity.getId(), account.getId());
             socialMedia.add(DTOBuilder.buildSocialMedia(account, link));
         });

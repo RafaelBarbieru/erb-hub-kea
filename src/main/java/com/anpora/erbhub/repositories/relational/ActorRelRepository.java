@@ -1,4 +1,4 @@
-package com.anpora.erbhub.repositories;
+package com.anpora.erbhub.repositories.relational;
 
 import com.anpora.erbhub.dao.relational.ActorRelDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  */
-public interface ActorRepository extends JpaRepository<ActorRelDAO, Long> {
+public interface ActorRelRepository extends JpaRepository<ActorRelDAO, Long> {
 
     @Query(nativeQuery = true, value =
             "SELECT * FROM actors A " +

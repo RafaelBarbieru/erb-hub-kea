@@ -7,9 +7,9 @@ import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.dto.SocialMediaDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
-import com.anpora.erbhub.repositories.ActorRepository;
-import com.anpora.erbhub.repositories.CharacterRepository;
-import com.anpora.erbhub.repositories.SocialMediaRepository;
+import com.anpora.erbhub.repositories.relational.ActorRelRepository;
+import com.anpora.erbhub.repositories.relational.CharacterRelRepository;
+import com.anpora.erbhub.repositories.relational.SocialMediaRelRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,21 +26,21 @@ public class CharacterService {
     // Dependencies
     private static final Logger LOG = LoggerFactory.getLogger(BattleService.class);
     private Environment env;
-    private CharacterRepository characterRepository;
-    private ActorRepository actorRepository;
-    private SocialMediaRepository socialMediaRepository;
+    private CharacterRelRepository characterRelRepository;
+    private ActorRelRepository actorRelRepository;
+    private SocialMediaRelRepository socialMediaRelRepository;
 
     // Constructor injection
     @Autowired
     public CharacterService(
             final Environment env,
-            CharacterRepository characterRepository,
-            ActorRepository actorRepository,
-            SocialMediaRepository socialMediaRepository) {
+            CharacterRelRepository characterRelRepository,
+            ActorRelRepository actorRelRepository,
+            SocialMediaRelRepository socialMediaRelRepository) {
         this.env = env;
-        this.characterRepository = characterRepository;
-        this.actorRepository = actorRepository;
-        this.socialMediaRepository = socialMediaRepository;
+        this.characterRelRepository = characterRelRepository;
+        this.actorRelRepository = actorRelRepository;
+        this.socialMediaRelRepository = socialMediaRelRepository;
     }
 
     // Methods
@@ -53,7 +53,7 @@ public class CharacterService {
         List<CharacterDTO> characters = new ArrayList<>();
 
         // Retrieving all the battles from the database
-        characterRepository.findAll().forEach(characterEntity -> characters.add(buildCharacterDTO(characterEntity)));
+        characterRelRepository.findAll().forEach(characterEntity -> characters.add(buildCharacterDTO(characterEntity)));
 
         // Returning the battles
         return characters;
@@ -66,7 +66,7 @@ public class CharacterService {
      * @return
      */
     public CharacterDTO getCharacterById(Long id) throws Exception {
-        Optional<CharacterRelDAO> battleEntity = characterRepository.findById(id);
+        Optional<CharacterRelDAO> battleEntity = characterRelRepository.findById(id);
         return buildCharacterDTO(
                 battleEntity.orElseThrow(
                         () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
@@ -83,14 +83,14 @@ public class CharacterService {
     public CharacterDTO buildCharacterDTO(CharacterRelDAO characterEntity) {
 
         // Getting all the actors for this character
-        List<ActorRelDAO> actorsDAO = actorRepository.findActorsByCharacter(characterEntity.getId());
+        List<ActorRelDAO> actorsDAO = actorRelRepository.findActorsByCharacter(characterEntity.getId());
 
         // Building the actors list
         List<ActorDTO> actorsDTO = new ArrayList<>();
         actorsDAO.forEach(actorDAO -> {
 
             // Getting the social media of the actor
-            List<SocialMediaRelDAO> socialMediaDAOList = socialMediaRepository
+            List<SocialMediaRelDAO> socialMediaDAOList = socialMediaRelRepository
                     .findSocialMediaByActorID(actorDAO.getId());
 
             // Building the social media DTO
@@ -99,7 +99,7 @@ public class CharacterService {
                 SocialMediaDTO socialMediaDTO = SocialMediaDTO.builder()
                         .id(socialMediaEntity.getId())
                         .name(socialMediaEntity.getName())
-                        .link(socialMediaRepository.getLinkByActorIDAndSocialMediaID(actorDAO.getId(), socialMediaEntity.getId()))
+                        .link(socialMediaRelRepository.getLinkByActorIDAndSocialMediaID(actorDAO.getId(), socialMediaEntity.getId()))
                         .build();
                 socialMedia.add(socialMediaDTO);
             });

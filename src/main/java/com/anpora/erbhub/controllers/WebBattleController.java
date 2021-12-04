@@ -1,5 +1,6 @@
 package com.anpora.erbhub.controllers;
 
+import com.anpora.erbhub.dao.document.BattleDocDAO;
 import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
@@ -46,6 +47,13 @@ public class WebBattleController {
         return "battles";
     }
 
+    @RequestMapping("/doc/battles")
+    public String battlesDoc(Model model) throws Exception {
+        List<BattleDocDAO> battles = battleService.getAllBattlesDoc();
+        model.addAttribute("battles", battles);
+        return "battles";
+    }
+
     @RequestMapping("/battle/{id}")
     public String battle(Model model, @PathVariable Long id) throws Exception {
         try {
@@ -53,6 +61,17 @@ public class WebBattleController {
             List<ActorDTO> actors = battleService.getActorsOfBattle(id);
             model.addAttribute("battle", battle);
             model.addAttribute("actors", actors);
+            return "battle";
+        } catch (ResourceNotFoundException ex) {
+            return "battle_not_found";
+        }
+    }
+
+    @RequestMapping("/doc/battle/{id}")
+    public String battleDoc(Model model, @PathVariable String id) throws Exception {
+        try {
+            BattleDocDAO battle = battleService.getBattleByIdDoc(id);
+            model.addAttribute("battle", battle);
             return "battle";
         } catch (ResourceNotFoundException ex) {
             return "battle_not_found";

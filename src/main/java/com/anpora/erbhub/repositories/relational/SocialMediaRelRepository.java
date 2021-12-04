@@ -1,4 +1,4 @@
-package com.anpora.erbhub.repositories;
+package com.anpora.erbhub.repositories.relational;
 
 import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
 import com.anpora.erbhub.dto.ActorDTO;
@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  */
-public interface SocialMediaRepository extends JpaRepository<SocialMediaRelDAO, Long> {
+public interface SocialMediaRelRepository extends JpaRepository<SocialMediaRelDAO, Long> {
 
     @Query(nativeQuery = true, value =
             "SELECT * FROM social_media S " +

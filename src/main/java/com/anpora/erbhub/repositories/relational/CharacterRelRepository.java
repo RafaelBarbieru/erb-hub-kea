@@ -1,4 +1,4 @@
-package com.anpora.erbhub.repositories;
+package com.anpora.erbhub.repositories.relational;
 
 import com.anpora.erbhub.dao.relational.CharacterRelDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov
  */
-public interface CharacterRepository extends JpaRepository<CharacterRelDAO, Long> {
+public interface CharacterRelRepository extends JpaRepository<CharacterRelDAO, Long> {
 
     Optional<CharacterRelDAO> findById(Long id);
 
