@@ -15,7 +15,7 @@ public interface CharacterRelRepository extends JpaRepository<CharacterRelDAO, L
     Optional<CharacterRelDAO> findById(Long id);
 
     @Query(nativeQuery = true, value =
-            "SELECT c.* FROM characters C " +
+            "SELECT * FROM characters C " +
                     "JOIN actors_characters AC ON C.id = AC.character_id " +
                     "JOIN actors A ON A.id = AC.actor_id " +
                     "WHERE A.id = ?1"
