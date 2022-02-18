@@ -1,4 +1,9 @@
-# erb-api
-Spring Boot API project for all of Epic Rap Battles of History's battles, characters and actors.
+# ERB Hub
+An encyclopedia-like website that shows various Battles, Characters, Actors and the relationship between them from the Epic Rap Battles of History YouTube channel.
 
-This is a personal side-project I began working on to understand the core modules and work flow of Spring Boot. I intend to finish it when I get more time on my hands and MySQL decides to work on my PC again...
+## Technologies:
+- Backend: **Spring Boot**.
+- Server-side rendering template engine: **Thymeleaf**.
+- Databases: **MySQL** (fully implemented), **MongoDB**, **Neo4J**.
+- Design made in **Figma**.
+- Hosted on **Heroku**.
