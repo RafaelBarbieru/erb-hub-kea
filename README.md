@@ -8,4 +8,6 @@ An encyclopedia-like website that shows various Battles, Characters, Actors and 
 - Design made in **Figma**.
 - Hosted on **Heroku**.
 
+You can access the demo here:
 ### http://erb-hub-app.herokuapp.com/
+Be aware we are using free dynos that deactivate when certain time has passed, so the page may take a long time to load.
