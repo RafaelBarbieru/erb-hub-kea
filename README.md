@@ -10,4 +10,4 @@ An encyclopedia-like website that shows various Battles, Characters, Actors and 
 
 You can access the demo here:
 ### http://erb-hub-app.herokuapp.com/
-Be aware we are using free dynos that deactivate when certain time has passed, so the page may take a long time to load.
+Be aware we are using free dynos that are automatically turned off when certain time has passed since last time someone has accessed the site, so the page may take a long time to load.
