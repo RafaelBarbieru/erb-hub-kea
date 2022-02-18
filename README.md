@@ -7,3 +7,5 @@ An encyclopedia-like website that shows various Battles, Characters, Actors and 
 - Databases: **MySQL** (fully implemented), **MongoDB**, **Neo4J**.
 - Design made in **Figma**.
 - Hosted on **Heroku**.
+
+### http://erb-hub-app.herokuapp.com/
