@@ -20,17 +20,7 @@
         <br>
 
         <!-- Description -->
-        <p class="card-text erb-lyrics" th:text="${actor.getDescription()}"></p>
-
-        <!-- Characters -->
-        <div>
-            Characters:
-            <a
-                th:each="character,charStat : ${characters.get(actor.id)}" th:unless="${charStat.index >= 2}"
-                th:href="'/character/' + ${character.getId()}"
-                th:text="${character.getName()} + ' | '">
-            </a>
-        </div>
+        <p class="card-text erb-description" th:text="${actor.getDescription()}"></p>
 
     </div>
 </div>

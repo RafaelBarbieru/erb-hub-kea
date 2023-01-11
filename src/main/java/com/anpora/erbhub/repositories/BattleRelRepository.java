@@ -1,6 +1,6 @@
-package com.anpora.erbhub.repositories.relational;
+package com.anpora.erbhub.repositories;
 
-import com.anpora.erbhub.dao.relational.BattleRelDAO;
+import com.anpora.erbhub.dao.BattleRelDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

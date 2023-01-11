@@ -15,8 +15,8 @@
 <!-- Navbar -->
 <div th:replace="fragments/_navbar.html"></div>
 
-<!-- Battles -->
-<div class="erb-battles">
+<!-- Characters -->
+<div class="erb-grid">
     <div th:each="character: ${characters}" th:include="fragments/_character.html"></div>
 </div>
 </body>

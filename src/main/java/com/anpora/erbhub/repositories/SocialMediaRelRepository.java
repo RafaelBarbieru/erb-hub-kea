@@ -1,12 +1,10 @@
-package com.anpora.erbhub.repositories.relational;
+package com.anpora.erbhub.repositories;
 
-import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
-import com.anpora.erbhub.dto.ActorDTO;
+import com.anpora.erbhub.dao.SocialMediaRelDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Rafael Barbieru, Popular Belbase, Anton Kamenov

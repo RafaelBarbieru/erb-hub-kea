@@ -16,16 +16,16 @@
         <small th:text="${@commonUtils.getFormattedDuration(battle.getDuration())}" style="margin-bottom: 2rem"></small>
 
         <!-- Lyrics -->
-        <p class="card-text erb-lyrics" th:text="${battle.getLyrics()}"></p>
+        <p class="card-text erb-description" th:text="${battle.getLyrics()}"></p>
 
         <!-- Buttons -->
         <div class="d-flex justify-content-between">
 
             <!-- YouTube -->
-            <a th:href="${battle.getYoutubeLink()}" target="_blank" class="btn btn-primary"><i class="fab fa-youtube"></i> YouTube</a>
+            <a th:href="${battle.getYoutubeLink()}" target="_blank" class="btn erb-btn-youtube"><i class="fab fa-youtube"></i> YouTube</a>
 
             <!-- Spotify -->
-            <a th:href="${battle.getSpotifyLink()}" target="_blank" class="btn btn-primary"><i class="fab fa-spotify"></i> Spotify</a>
+            <a th:href="${battle.getSpotifyLink()}" target="_blank" class="btn erb-btn-spotify"><i class="fab fa-spotify"></i> Spotify</a>
 
             <!-- Details -->
             <a th:href="'/battle/' + ${battle.getId()}" class="btn btn-primary"><i class="fas fa-search"></i> Details</a>

@@ -1,4 +1,4 @@
-package com.anpora.erbhub.dao.relational;
+package com.anpora.erbhub.dao;
 
 import lombok.Data;
 

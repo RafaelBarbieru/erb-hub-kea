@@ -1,15 +1,14 @@
 package com.anpora.erbhub.utils;
 
-import com.anpora.erbhub.dao.relational.ActorRelDAO;
-import com.anpora.erbhub.dao.relational.BattleRelDAO;
-import com.anpora.erbhub.dao.relational.CharacterRelDAO;
-import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
+import com.anpora.erbhub.dao.ActorRelDAO;
+import com.anpora.erbhub.dao.BattleRelDAO;
+import com.anpora.erbhub.dao.CharacterRelDAO;
+import com.anpora.erbhub.dao.SocialMediaRelDAO;
 import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.dto.SocialMediaDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DTOBuilder {

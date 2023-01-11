@@ -1,16 +1,16 @@
 package com.anpora.erbhub.services;
 
-import com.anpora.erbhub.dao.relational.ActorRelDAO;
-import com.anpora.erbhub.dao.relational.SocialMediaRelDAO;
+import com.anpora.erbhub.dao.ActorRelDAO;
+import com.anpora.erbhub.dao.SocialMediaRelDAO;
 import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
 import com.anpora.erbhub.dto.SocialMediaDTO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
-import com.anpora.erbhub.repositories.relational.ActorRelRepository;
-import com.anpora.erbhub.repositories.relational.BattleRelRepository;
-import com.anpora.erbhub.repositories.relational.CharacterRelRepository;
-import com.anpora.erbhub.repositories.relational.SocialMediaRelRepository;
+import com.anpora.erbhub.repositories.ActorRelRepository;
+import com.anpora.erbhub.repositories.BattleRelRepository;
+import com.anpora.erbhub.repositories.CharacterRelRepository;
+import com.anpora.erbhub.repositories.SocialMediaRelRepository;
 import com.anpora.erbhub.utils.DTOBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

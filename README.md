@@ -1,13 +1,9 @@
 # ERB Hub
-An encyclopedia-like website that shows various Battles, Characters, Actors and the relationship between them from the Epic Rap Battles of History YouTube channel.
+A server-side rendered encyclopedia-like website that shows the relationship between all battles, characters and actors from the Epic Rap Battles of History (ERB) YouTube channel.
 
 ## Technologies:
 - Backend: **Spring Boot**.
 - Server-side rendering template engine: **Thymeleaf**.
-- Databases: **MySQL** (fully implemented), **MongoDB**, **Neo4J**.
+- Databases: **MySQL**.
 - Design made in **Figma**.
 - Hosted on **Heroku**.
-
-You can access the demo here:
-### http://erb-hub-app.herokuapp.com/
-Be aware we are using free dynos that are automatically turned off when certain time has passed since last time someone has accessed the site, so the page may take a long time to load.

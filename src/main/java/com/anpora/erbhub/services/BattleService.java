@@ -1,16 +1,14 @@
 package com.anpora.erbhub.services;
 
-import com.anpora.erbhub.dao.document.BattleDocDAO;
 import com.anpora.erbhub.dto.ActorDTO;
 import com.anpora.erbhub.dto.BattleDTO;
 import com.anpora.erbhub.dto.CharacterDTO;
-import com.anpora.erbhub.repositories.document.BattleDocRepository;
-import com.anpora.erbhub.repositories.relational.BattleRelRepository;
-import com.anpora.erbhub.repositories.relational.ActorRelRepository;
-import com.anpora.erbhub.dao.relational.BattleRelDAO;
-import com.anpora.erbhub.dao.relational.ActorRelDAO;
+import com.anpora.erbhub.repositories.BattleRelRepository;
+import com.anpora.erbhub.repositories.ActorRelRepository;
+import com.anpora.erbhub.dao.BattleRelDAO;
+import com.anpora.erbhub.dao.ActorRelDAO;
 import com.anpora.erbhub.exceptions.ResourceNotFoundException;
-import com.anpora.erbhub.repositories.relational.SocialMediaRelRepository;
+import com.anpora.erbhub.repositories.SocialMediaRelRepository;
 import com.anpora.erbhub.utils.DTOBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +31,6 @@ public class BattleService {
     private static final Logger LOG = LoggerFactory.getLogger(BattleService.class);
     private Environment env;
     private BattleRelRepository battleRelRepository;
-    private BattleDocRepository battleDocRepository;
     private ActorRelRepository actorRelRepository;
     private SocialMediaRelRepository socialMediaRelRepository;
 
@@ -45,12 +41,10 @@ public class BattleService {
     public BattleService(
             final Environment env,
             BattleRelRepository battleRelRepository,
-            BattleDocRepository battleDocRepository,
             ActorRelRepository actorRelRepository,
             SocialMediaRelRepository socialMediaRelRepository) {
         this.env = env;
         this.battleRelRepository = battleRelRepository;
-        this.battleDocRepository = battleDocRepository;
         this.actorRelRepository = actorRelRepository;
         this.socialMediaRelRepository = socialMediaRelRepository;
     }
@@ -73,16 +67,6 @@ public class BattleService {
     }
 
     /**
-     * Returns all of the battles using the document repository.
-     *
-     * @return
-     */
-    public List<BattleDocDAO> getAllBattlesDoc() {
-        List<BattleDocDAO> battles = battleDocRepository.findAll();
-        return battles;
-    }
-
-    /**
      * Returns a battle by its ID
      *
      * @param id
@@ -94,12 +78,6 @@ public class BattleService {
                 battleEntity.orElseThrow(
                         () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
                 )
-        );
-    }
-
-    public BattleDocDAO getBattleByIdDoc(String id) throws Exception {
-        return battleDocRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException(env.getProperty("error.message.notfound"))
         );
     }
 

@@ -22,7 +22,10 @@
     <div class="card" style="width: 50%">
         <img th:src="${actor.getImage()}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title" th:text="${actor.getName()}"></h5>
+            <h5 class="card-title" th:inline="text">
+                [[${actor.getName()}]]
+                <span th:if="${actor.getAlias() != null}" th:text="' (' + ${actor.getAlias()} + ')'"></span>
+            </h5>
         </div>
         <ul class="list-group list-group-flush">
 

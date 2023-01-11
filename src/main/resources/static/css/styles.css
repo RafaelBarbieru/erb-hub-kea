@@ -12,15 +12,20 @@
     margin-top: 2rem;
     min-width: 90%;
 }
-.erb-battles {
+.erb-grid {
     width: 90%;
     margin: 2rem 0 2rem 4rem;
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(400px, 1fr));
     grid-gap: 2rem;
 }
-.erb-battles>* {
+.erb-grid>* {
     place-self: center;
+}
+
+.erb-title {
+    font-size: 1.8rem;
+    margin: 0 1rem 0 4rem;
 }
 
 .erb-last-battle {
@@ -35,11 +40,13 @@
     margin-bottom: 1rem;
 }
 
-.erb-lyrics {
+.erb-description {
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: #181818;
+    margin-top: 0.25rem;
 }
 
 .erb-card-img {
@@ -52,4 +59,13 @@
 }
 .erb-card-img img {
     z-index: 1;
+}
+
+.erb-btn-youtube {
+    background-color: #FF0000 !important;
+    color: white !important;
+}
+.erb-btn-spotify {
+    background-color: #1BD760 !important;
+    color: white !important;
 }
